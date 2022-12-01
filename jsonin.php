@@ -30,7 +30,7 @@ catch(Exception ex){
 }
 catch(Exception $e) {
     header("HTTP/1.1  400 Bad Request");
-    print(json_encode("ERROR"));
+    print(json_encode("Bad Request"));
 }
 finally{
     mysqli_close($con);
