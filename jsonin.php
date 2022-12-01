@@ -18,15 +18,9 @@ if(!(isset($_REQUEST['lat']) && isset($_REQUEST['lng']) && isset($gateadresseInp
     $gateadresse=(string)$gateadresseInp;
     $beskrivelse=(string)$beskrivelseInp;
 
-catch(Exception ex){
-    header("HTTP/1.1  400 Bad Request");
-    print(json_encode("Bad Request"));
-    mysqli_close($con);
-    return;
-}
-   $sql=mysqli_query($con,"insert into s349967.Severdighet (lng,lat,gateadresse,beskrivelse) values('$lng','$lat','$gateadresse','$beskrivelse');");
-   header("HTTP/1.1 200 OK");
-   print(json_encode("OK"));
+    $sql=mysqli_query($con,"insert into s349967.Severdighet (lng,lat,gateadresse,beskrivelse) values('$lng','$lat','$gateadresse','$beskrivelse');");
+    header("HTTP/1.1 200 OK");
+    print(json_encode("OK"));
 }
 catch(Exception $e) {
     header("HTTP/1.1  400 Bad Request");
