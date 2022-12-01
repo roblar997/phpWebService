@@ -38,12 +38,3 @@ finally{
  
 
 ?>
-
-<?php
-
-$con=mysqli_connect("localhost","s349967","","s349967");
-$sql=("select * from Severdighet");
-$tabell=mysqli_query($con,$sql);
-mysqli_close($con);
-
-?>
