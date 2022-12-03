@@ -2,7 +2,7 @@
 try {
 $con=mysqli_connect('localhost','s349967','','s349967');
 
-if(!(isset($_REQUEST['lat']) && isset($_REQUEST['lng']) && isset($gateadresseInp=$_REQUEST['gateadresse'])&&isset($beskrivelseInp=$_REQUEST['beskrivelse']))){
+if(!(isset($_REQUEST['lat']) && isset($_REQUEST['lng']) && isset($_REQUEST['gateadresse'])&&isset($_REQUEST['beskrivelse']))){
     header("HTTP/1.1  400 Bad Request");
     print(json_encode("Bad Request"));
     mysqli_close($con);
@@ -19,9 +19,10 @@ if(!(isset($_REQUEST['lat']) && isset($_REQUEST['lng']) && isset($gateadresseInp
     $gateadresse=(string)$gateadresseInp;
     $beskrivelse=(string)$beskrivelseInp;
 
+    $lng12digits = round($lng,12);
+    $lat12digits = round($lat,12);
 
-
-   $sql=mysqli_query($con,"UPDATE s349967.Severdighet SET gateadresse='$gateadresse',beskrivelse='$beskrivelse' WHERE lat='$lat' AND lng='$lng';");
+   $sql=mysqli_query($con,"UPDATE s349967.Severdighet SET gateadresse='$gateadresse',beskrivelse='$beskrivelse' WHERE ROUND(lat,12)='$lat12digits' AND ROUND(lng,12)='$lng12digits';");
    if($sql){
     header("HTTP/1.1 200 OK");
     print(json_encode("OK"));
