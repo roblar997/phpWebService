@@ -16,7 +16,7 @@ try {
     $lat=(float) $latInp;
 
 
-   $sql=mysqli_query($con,"DELETE FROM s349967.Severdighet WHERE lat=$lat AND lng=$lng;");
+   $sql=mysqli_query($con,"DELETE FROM s349967.Severdighet WHERE ROUND(lat,12)=round($lat,12) AND round(lng,12)=round($lng,12);");
    if($sql){
     header("HTTP/1.1 200 OK");
     print(json_encode("OK"));
@@ -24,6 +24,7 @@ try {
    else {
     header("HTTP/1.1 404 Not Found");
     print(json_encode("Not Found"));
+
    }
 
 }
